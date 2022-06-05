@@ -1,0 +1,19 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: quarkus-resteasy
+  name: quarkus-resteasy
+  namespace: quarkus-resteasy
+spec:
+  host: quarkus-resteasy-quarkus-resteasy.apps.ocp4.example.com
+  port:
+    targetPort: 8080-tcp
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: quarkus-resteasy
+    weight: 100
+  wildcardPolicy: None
